@@ -7,6 +7,14 @@ resource "aws_instance" "frontend" {
   }
 }
 
+resource "aws_route53_record" "frontend" {
+  zone_id = "Z088180210HCZBPL2XI2M"
+  name    = "frontend-dev.srikaanth62.online"
+  type    = "A"
+  ttl     = 30
+  records = [aws_instance.frontend.private_ip]
+}
+
 data "aws_ami" "centos" {
   owners      = ["973714476881"]
   most_recent = true
@@ -22,6 +30,14 @@ resource "aws_instance" "mongodb" {
   }
 }
 
+resource "aws_route53_record" "mongodb" {
+  zone_id = "Z088180210HCZBPL2XI2M"
+  name    = "mongodb-dev.srikaanth62.online"
+  type    = "A"
+  ttl     = 30
+  records = [aws_instance.mongodb.private_ip]
+}
+
 resource "aws_instance" "catalogue" {
   ami           = data.aws_ami.centos.image_id
   instance_type = "t3.micro"
@@ -31,6 +47,16 @@ resource "aws_instance" "catalogue" {
   }
 }
 
+resource "aws_route53_record" "catalogue" {
+  zone_id = "Z088180210HCZBPL2XI2M"
+  name    = "catalogue-dev.srikaanth62.online"
+  type    = "A"
+  ttl     = 30
+  records = [aws_instance.catalogue.private_ip]
+}
+
+
+
 resource "aws_instance" "redis" {
   ami           = data.aws_ami.centos.image_id
   instance_type = "t3.micro"
@@ -38,6 +64,14 @@ resource "aws_instance" "redis" {
   tags = {
     Name = "redis"
   }
+}
+
+resource "aws_route53_record" "redis" {
+  zone_id = "Z088180210HCZBPL2XI2M"
+  name    = "redis-dev.srikaanth62.online"
+  type    = "A"
+  ttl     = 30
+  records = [aws_instance.redis.private_ip]
 }
 
 resource "aws_instance" "user" {
@@ -49,6 +83,14 @@ resource "aws_instance" "user" {
   }
 }
 
+resource "aws_route53_record" "user" {
+  zone_id = "Z088180210HCZBPL2XI2M"
+  name    = "user-dev.srikaanth62.online"
+  type    = "A"
+  ttl     = 30
+  records = [aws_instance.user.private_ip]
+}
+
 resource "aws_instance" "cart" {
   ami           = data.aws_ami.centos.image_id
   instance_type = "t3.micro"
@@ -56,6 +98,14 @@ resource "aws_instance" "cart" {
   tags = {
     Name = "cart"
   }
+}
+
+resource "aws_route53_record" "cart" {
+  zone_id = "Z088180210HCZBPL2XI2M"
+  name    = "cart-dev.srikaanth62.online"
+  type    = "A"
+  ttl     = 30
+  records = [aws_instance.cart.private_ip]
 }
 
 resource "aws_instance" "mysql" {
@@ -67,6 +117,14 @@ resource "aws_instance" "mysql" {
   }
 }
 
+resource "aws_route53_record" "mysql" {
+  zone_id = "Z088180210HCZBPL2XI2M"
+  name    = "mysql-dev.srikaanth62.online"
+  type    = "A"
+  ttl     = 30
+  records = [aws_instance.mysql.private_ip]
+}
+
 resource "aws_instance" "shipping" {
   ami           = data.aws_ami.centos.image_id
   instance_type = "t3.micro"
@@ -74,6 +132,14 @@ resource "aws_instance" "shipping" {
   tags = {
     Name = "shipping"
   }
+}
+
+resource "aws_route53_record" "shipping" {
+  zone_id = "Z088180210HCZBPL2XI2M"
+  name    = "shipping-dev.srikaanth62.online"
+  type    = "A"
+  ttl     = 30
+  records = [aws_instance.shipping.private_ip]
 }
 
 resource "aws_instance" "rabbitmq" {
@@ -85,6 +151,14 @@ resource "aws_instance" "rabbitmq" {
   }
 }
 
+resource "aws_route53_record" "rabbitmq" {
+  zone_id = "Z088180210HCZBPL2XI2M"
+  name    = "rabbitmq-dev.srikaanth62.online"
+  type    = "A"
+  ttl     = 30
+  records = [aws_instance.rabbitmq.private_ip]
+}
+
 resource "aws_instance" "payment" {
   ami           = data.aws_ami.centos.image_id
   instance_type = "t3.micro"
@@ -94,6 +168,14 @@ resource "aws_instance" "payment" {
   }
 }
 
+resource "aws_route53_record" "payment" {
+  zone_id = "Z088180210HCZBPL2XI2M"
+  name    = "payment-dev.srikaanth62.online"
+  type    = "A"
+  ttl     = 30
+  records = [aws_instance.payment.private_ip]
+}
+
 resource "aws_instance" "dispatch" {
   ami           = data.aws_ami.centos.image_id
   instance_type = "t3.micro"
@@ -101,4 +183,12 @@ resource "aws_instance" "dispatch" {
   tags = {
     Name = "dispatch"
   }
+}
+
+resource "aws_route53_record" "dispatch" {
+  zone_id = "Z088180210HCZBPL2XI2M"
+  name    = "dispatch-dev.srikaanth62.online"
+  type    = "A"
+  ttl     = 30
+  records = [aws_instance.dispatch.private_ip]
 }
