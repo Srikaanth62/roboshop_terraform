@@ -9,15 +9,32 @@ data "aws_security_group" "allow-all" {
   name = "allow-all"
 }
 
-resource "aws_instance" "frontend" {
+variable "components" {
+  default = [
+  "frontend",
+    "mongodb",
+    "catalogue",
+    "redis",
+    "user",
+    "cart",
+    "mysql",
+    "shipping",
+    "rabbitmq",
+    "payment",
+    "dispatch"
+  ]
+}
+
+resource "aws_instance" "Instance" {
+  count = length(var.components)
   ami = data.aws_ami.centos.image_id
   instance_type = "t3.micro"
   vpc_security_group_ids = [ data.aws_security_group.allow-all.id ]
   tags = {
-    Name = "frontend"
+    Name = var.components[count.index]
   }
 }
-
+/*
 resource "aws_route53_record" "frontend" {
   name    = "frontend-dev.srikaanth62.online"
   type    = "A"
