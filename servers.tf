@@ -211,4 +211,4 @@ resource "aws_route53_record" "dispatch" {
   ttl     = 30
   records = [aws_instance.dispatch.private_ip]
   zone_id = "Z088180210HCZBPL2XI2M"
-}
+} */
