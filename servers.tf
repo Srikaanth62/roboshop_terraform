@@ -10,22 +10,74 @@ data "aws_security_group" "allow-all" {
 }
 
 variable "components" {
-  default = [
-    "frontend",
-    "mongodb",
-    "catalogue",
-    "redis",
-    "user",
-    "cart",
-    "mysql",
-    "shipping",
-    "rabbitmq",
-    "payment",
-    "dispatch"
-  ]
+  default = {
+    frontend = {
+      name = "frontend"
+      instance_type = "t3.micro"
+    }
+    mongodb = {
+      name = "mongodb"
+      instance_type = "t3.micro"
+    }
+    catalogue = {
+      name = "catalogue"
+      instance_type = "t3.micro"
+    }
+    redis = {
+      name = "redis"
+      instance_type = "t3.micro"
+    }
+    user = {
+      name = "user"
+      instance_type = "t3.micro"
+    }
+    cart = {
+      name = "cart"
+      instance_type = "t3.micro"
+    }
+    mysql = {
+      name = "mysql"
+      instance_type = "t3.micro"
+    }
+    shipping = {
+      name = "shipping"
+      instance_type = "t3.micro"
+    }
+    rabbitmq = {
+      name = "rabbitmq"
+      instance_type = "t3.micro"
+    }
+    payment = {
+      name = "payment"
+      instance_type = "t3.micro"
+    }
+    dispatch = {
+      name = "dispatch"
+      instance_type = "t3.micro"
+    }
+  }
 }
 
 resource "aws_instance" "Instance" {
+  for_each = var.components
+  ami = data.aws_ami.centos.image_id
+  instance_type = each.value["instance_type"]
+  vpc_security_group_ids = [ data.aws_security_group.allow-all.id ]
+  tags = {
+    Name = each.value["name"]
+  }
+}
+
+resource "aws_route53_record" "records" {
+  for_each = var.components
+  name    = "${each.value["name"]}-dev.srikaanth62.online"
+  type    = "A"
+  ttl     = 30
+  records = [aws_instance.Instance[each.value["name"]].private_ip]
+  zone_id = "Z088180210HCZBPL2XI2M"
+}
+
+/*resource "aws_instance" "Instance" {
   count = length(var.components)
   ami = data.aws_ami.centos.image_id
   instance_type = "t3.micro"
@@ -33,7 +85,7 @@ resource "aws_instance" "Instance" {
   tags = {
     Name = var.components[count.index]
   }
-}
+}*/
 /*
 resource "aws_route53_record" "frontend" {
   name    = "frontend-dev.srikaanth62.online"
