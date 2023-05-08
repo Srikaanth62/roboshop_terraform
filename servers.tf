@@ -49,6 +49,9 @@ variable "components" {
 
 variable "env" {}
 
+env = "dev"
+env = "prod"
+
 
 module "servers" {
   for_each = var.components
