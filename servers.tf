@@ -47,7 +47,9 @@ variable "components" {
   }
 }
 
-variable "env" {}
+variable "env" {
+  default = [ "dev", "prod"]
+}
 
 module "servers" {
   for_each = var.components
