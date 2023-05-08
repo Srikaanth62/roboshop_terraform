@@ -1,23 +1,16 @@
 
-
-resource "aws_instance" "Instance" {
+module "servers" {
   for_each = var.components
-  ami = data.aws_ami.centos.image_id
-  instance_type = each.value["instance_type"]
-  vpc_security_group_ids = [ data.aws_security_group.allow-all.id ]
-  tags = {
-    Name = each.value["name"]
-  }
+  source = "./module"
+
+  components_name = each.value["name"]
+  env             = var.env
+  instance_type   = each.value["instance_type"]
+  password        = lookup(each.value, "password", "null" )
 }
 
-resource "aws_route53_record" "records" {
-  for_each = var.components
-  name    = "${each.value["name"]}-dev.srikaanth62.online"
-  type    = "A"
-  ttl     = 30
-  records = [aws_instance.Instance[each.value["name"]].private_ip]
-  zone_id = "Z088180210HCZBPL2XI2M"
-}
+variable "components" {}
+variable "env" {}
 
 /*resource "aws_instance" "Instance" {
   count = length(var.components)
