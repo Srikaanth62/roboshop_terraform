@@ -49,6 +49,7 @@ variable "components" {
 
 variable "env" {}
 
+
 module "servers" {
   for_each = var.components
   source = "./module"

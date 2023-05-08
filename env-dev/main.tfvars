@@ -1,5 +1,6 @@
 env = "dev"
 
+
 components = {
   frontend = {
     name = "frontend"
@@ -46,3 +47,4 @@ components = {
     instance_type = "t3.micro"
   }
 }
+
