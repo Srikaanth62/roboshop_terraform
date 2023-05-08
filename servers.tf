@@ -49,8 +49,7 @@ variable "components" {
 
 variable "env" {}
 
-env = "dev"
-env = "prod"
+
 
 
 module "servers" {
