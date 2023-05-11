@@ -1,3 +1,5 @@
+variable "env" {}
+
 variable "db_servers" {
   default = {
     redis = {
