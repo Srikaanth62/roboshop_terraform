@@ -1,4 +1,6 @@
-variable "env" {}
+variable "env" {
+  default = [ "dev", "prod" ]
+}
 variable "instance_type" {}
 variable "components_name" {}
 variable "password" {}
