@@ -3,7 +3,7 @@ resource "aws_instance" "instance" {
   instance_type = var.instance_type
   vpc_security_group_ids = [ data.aws_security_group.allow-all.id ]
   tags = {
-    Name = var.components_name
+    Name = local.name
   }
 }
 
@@ -18,13 +18,7 @@ resource "null_resource" "provisioner" {
       host     = aws_instance.instance.private_ip
     }
 
-    inline = [
-      "rm -rf roboshop_terraform",
-      "git clone https://github.com/Srikaanth62/roboshop_terraform.git",
-      "cd roboshop_terraform",
-      "git pull",
-      "sudo bash ${var.components_name}.sh ${var.password}"
-    ]
+    inline = var.app_type == "db" ? local.db_commands : local.app_commands
   }
 }
 
