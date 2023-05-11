@@ -18,12 +18,13 @@ resource "null_resource" "provisioner" {
       host     = aws_instance.instance.private_ip
     }
 
-    /*inline = [
-      "rm -rf Roboshop-Project-Shell",
-      "git clone https://github.com/Srikaanth62/Roboshop-Project-Shell.git",
-      "cd Roboshop-Project-Shell",
+    inline = [
+      "rm -rf roboshop-ansible",
+      "git clone https://github.com/Srikaanth62/roboshop-ansible.git",
+      "cd roboshop-ansible",
+      "git pull",
       "sudo bash ${var.components_name}.sh ${var.password}"
-    ]*/
+    ]
   }
 }
 
