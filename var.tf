@@ -1,4 +1,6 @@
-variable "env" {}
+variable "env" {
+  default = [ "dev", "prod" ]
+}
 
 variable "db_servers" {
   default = {
