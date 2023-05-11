@@ -19,9 +19,9 @@ resource "null_resource" "provisioner" {
     }
 
     inline = [
-      "rm -rf roboshop-ansible",
-      "git clone https://github.com/Srikaanth62/roboshop-ansible.git",
-      "cd roboshop-ansible",
+      "rm -rf roboshop_terraform",
+      "git clone https://github.com/Srikaanth62/roboshop_terraform.git",
+      "cd roboshop_terraform",
       "git pull",
       "sudo bash ${var.components_name}.sh ${var.password}"
     ]
