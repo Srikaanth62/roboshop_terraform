@@ -8,20 +8,22 @@ resource "aws_instance" "instance" {
 }
 
 resource "null_resource" "provisioner" {
+  count = var.provisioner ? 1 : 0
   depends_on = [aws_instance.instance, aws_route53_record.records]
-  triggers = {
-    private_ip = aws_instance.instance.private_ip
-  }
   provisioner "remote-exec" {
-
     connection {
-      type     = "ssh"
+      type     = "sudo ssh"
       user     = "centos"
       password = "DevOps321"
       host     = aws_instance.instance.private_ip
     }
 
-    inline = var.app_type == "db" ? local.db_commands : local.app_commands
+    inline = [
+      "rm -rf Roboshop-Project-Shell",
+      "git clone https://github.com/Srikaanth62/Roboshop-Project-Shell",
+      "cd Roboshop-Project-Shelll",
+      "sudo bash ${var.components_name}.sh ${var.password}"
+    ]
   }
 }
 

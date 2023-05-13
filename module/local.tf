@@ -1,6 +1,6 @@
 locals {
   name = var.env != "" ? "${var.components_name}-${var.env}" : var.components_name
-  db_commands = [
+  /*db_commands = [
     "rm -rf Roboshop-Project-Shell",
     "git clone https://github.com/Srikaanth62/Roboshop-Project-Shell",
     "cd Roboshop-Project-Shelll",
@@ -9,5 +9,5 @@ locals {
   app_commands = [
     "sudo labauto ansible",
     "ansible-pull -i localhost, -U https://github.com/Srikaanth62/roboshop-ansible roboshop.yml -e env=${var.env} -e role_name=${var.components_name}"
-  ]
+  ]*/
 }
