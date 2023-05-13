@@ -24,6 +24,8 @@ module "app_servers" {
   app_type = "app"
 }
 
+variable "app_servers" {}
+variable "db_servers" {}
 
 /*resource "aws_instance" "Instance" {
   count = length(var.components)

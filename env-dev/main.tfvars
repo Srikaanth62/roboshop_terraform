@@ -1,5 +1,5 @@
 
-env="dev"
+env = "dev"
 
 app_servers = {
   frontend = {
@@ -31,6 +31,11 @@ app_servers = {
     name          = "payment"
     instance_type = "t3.small"
     password      = "roboshop123"
+  }
+
+  dispatch = {
+    name          = "dispatch"
+    instance_type = "t3.micro"
   }
 }
 

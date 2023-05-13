@@ -32,3 +32,5 @@ resource "aws_route53_record" "records" {
   records = [aws_instance.instance.private_ip]
   zone_id = "Z088180210HCZBPL2XI2M"
 }
+
+

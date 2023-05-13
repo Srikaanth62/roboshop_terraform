@@ -39,6 +39,10 @@ components = {
     name          = "payment"
     instance_type = "t3.small"
   }
+  dispatch = {
+    name          = "dispatch"
+    instance_type = "t3.micro"
+  }
 }
 
 env = "prod"
