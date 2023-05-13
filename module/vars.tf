@@ -6,3 +6,6 @@ variable "provisioner" {
   default = false
 }
 variable "app_type" {}
+
+variable "app_servers" {}
+variable "db_servers" {}
