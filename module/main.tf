@@ -12,8 +12,8 @@ resource "null_resource" "provisioner" {
   depends_on = [aws_instance.instance, aws_route53_record.records]
   provisioner "remote-exec" {
     connection {
-      type     = "sudo ssh"
-      user     = "centos"
+      type     = "ssh"
+      user     = "root"
       password = "DevOps321"
       host     = aws_instance.instance.private_ip
     }
