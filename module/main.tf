@@ -8,7 +8,6 @@ resource "aws_instance" "instance" {
 }
 
 resource "null_resource" "provisioner" {
-  count = var.provisioner ? 1 : 0
   depends_on = [ aws_instance.instance, aws_route53_record.records ]
   triggers = {
     private_ip = aws_instance.instance.private_ip
@@ -21,12 +20,7 @@ resource "null_resource" "provisioner" {
       host     = aws_instance.instance.private_ip
     }
 
-    inline = [
-      "sudo rm -rf Roboshop-Project-Shell",
-      "git clone https://github.com/Srikaanth62/Roboshop-Project-Shell.git",
-      "cd Roboshop-Project-Shell",
-      "sudo bash ${var.components_name}.sh ${var.password}"
-    ]
+    inline = var.app_type == "db"  ? local.db_commands : local.app_commands
   }
 }
 
@@ -36,6 +30,28 @@ resource "aws_route53_record" "records" {
   ttl     = 30
   records = [aws_instance.instance.private_ip]
   zone_id = "Z088180210HCZBPL2XI2M"
+}
+
+resource "aws_iam_role" "role" {
+  name = "${var.components_name}-${var.env}-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Sid    = ""
+        Principal = {
+          Service = "ec2.amazonaws.com"
+        }
+      },
+    ]
+  })
+
+  tags = {
+    tag-key = "${var.components_name}-${var.env}-role"
+  }
 }
 
 
