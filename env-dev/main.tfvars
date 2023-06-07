@@ -33,35 +33,38 @@ app ={
     name = "frontend"
     instance_type = "t3.small"
     subnet_name = "web"
+    allow_app_cidr = "public"
     desired_capacity   = 2
     max_size           = 10
     min_size           = 2
-    allow_app_cidr = "public"
   }
   catalogue = {
     name = "catalogue"
     instance_type = "t3.small"
     subnet_name = "app"
     allow_app_cidr = "web"
+    desired_capacity   = 2
+    max_size           = 10
+    min_size           = 2
   }
-  cart = {
-    name = "cart"
-    instance_type = "t3.small"
-    subnet_name = "app"
-  }
-  user = {
-    name = "user"
-    instance_type = "t3.small"
-    subnet_name = "app"
-  }
-  shipping = {
-    name = "shipping"
-    instance_type = "t3.small"
-    subnet_name = "app"
-  }
-  payment = {
-    name = "payment"
-    instance_type = "t3.small"
-    subnet_name = "app"
-  }
+#  cart = {
+#    name = "cart"
+#    instance_type = "t3.small"
+#    subnet_name = "app"
+#  }
+#  user = {
+#    name = "user"
+#    instance_type = "t3.small"
+#    subnet_name = "app"
+#  }
+#  shipping = {
+#    name = "shipping"
+#    instance_type = "t3.small"
+#    subnet_name = "app"
+#  }
+#  payment = {
+#    name = "payment"
+#    instance_type = "t3.small"
+#    subnet_name = "app"
+#  }
 }
