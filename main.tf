@@ -7,6 +7,7 @@ module "vpc" {
   env = var.env
 }
 
+/*
 module "web" {
   source = "git::https://github.com/Srikaanth62/tf-module-app.git"
   for_each = var.app
@@ -14,3 +15,4 @@ module "web" {
   subnet_id = element(lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnets", null), each.value["subnet_name"], null), "subnet_ids", null), 0 )
 }
 
+*/
