@@ -15,7 +15,8 @@ module "app" {
   instance_type = each.value["instance_type"]
   name = each.value["name"]
   env = var.env
-  tags = merge(local.tags, { Monitor = "true" })
+  tags = local.tags
+  asg_tags = merge(var.tags, { Name = "${var.name}-${var.env}" })
   desired_capacity = each.value["desired_capacity"]
   min_size = each.value["min_size"]
   max_size = each.value["max_size"]
