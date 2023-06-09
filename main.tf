@@ -16,7 +16,6 @@ module "app" {
   name = each.value["name"]
   env = var.env
   tags = local.tags
-  asg_tags = "${var.name}-${var.env}-asg"
   desired_capacity = each.value["desired_capacity"]
   min_size = each.value["min_size"]
   max_size = each.value["max_size"]
