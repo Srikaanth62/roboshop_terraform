@@ -52,15 +52,17 @@ app ={
     min_size           = 2
   }
 
+/*
 docdb = {
   default = {
     subnet_name = "db"
     allow_db_cidr = "app"
     engine_version = "4.0.0"
     instance_count = 1
-    nstance_class = "db.t3.medium"
+    instance_class = "db.t3.medium"
     }
   }
+*/
 
 
 #  cart = {
