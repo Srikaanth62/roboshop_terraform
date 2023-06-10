@@ -53,12 +53,14 @@ app ={
   }
 
   docdb = {
-    main = {
-      subnet_name    = "db"
-      allow_db_cidr  = "app"
-      engine_version = "4.0.0"
-      instance_count = 1
-      instance_class = "db.t3.medium"
+    default = {
+      main = {
+        subnet_name    = "db"
+        allow_db_cidr  = "app"
+        engine_version = "4.0.0"
+        instance_count = 1
+        instance_class = "db.t3.medium"
+      }
     }
   }
 
