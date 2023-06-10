@@ -52,7 +52,6 @@ app ={
     min_size           = 2
   }
 
-/*
 docdb = {
   default = {
     subnet_name = "db"
@@ -62,7 +61,6 @@ docdb = {
     instance_class = "db.t3.medium"
     }
   }
-*/
 
 
 #  cart = {
