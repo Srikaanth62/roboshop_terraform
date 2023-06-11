@@ -39,7 +39,6 @@ module "docdb" {
   instance_count = each.value["instance_count"]
   instance_class = each.value["instance_class"]
   kms_arn = var.kms_arn
-  docdb = var.docdb
 
 }
 
