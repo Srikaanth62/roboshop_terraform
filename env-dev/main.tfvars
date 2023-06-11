@@ -1,3 +1,13 @@
+docdb = {
+  main ={
+    subnet_name    = "db"
+    allow_db_cidr  = "app"
+    engine_version = "4.0.0"
+    instance_count = 1
+    instance_class = "db.t3.medium"
+  }
+}
+
 env = "dev"
 bastion_cidr = ["172.31.13.238/32"]
 default_vpc_id = "vpc-0f945a96f067e3942"
@@ -52,15 +62,7 @@ app ={
     min_size           = 2
   }
 
-  /*docdb = {
-    main ={
-      subnet_name    = "db"
-      allow_db_cidr  = "app"
-      engine_version = "4.0.0"
-      instance_count = 1
-      instance_class = "db.t3.medium"
-    }
-  }*/
+
 
 
 
