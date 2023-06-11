@@ -42,6 +42,37 @@ module "docdb" {
 
 }
 
+module "rds" {
+  source = "git::https://github.com/Srikaanth62/tf-module-rds.git"
+  for_each = var.rds
+  subnets = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnets", null), each.value["subnet_name"], null), "subnet_ids", null)
+  tags = local.tags
+  env = var.env
+  vpc_id = local.vpc_id
+  allow_db_cidr = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnets", null), each.value["allow_db_cidr"], null), "subnet_cidrs", null)
+  engine_version = each.value["engine_version"]
+  instance_count = each.value["instance_count"]
+  instance_class = each.value["instance_class"]
+  kms_arn = var.kms_arn
+
+}
+
+module "elasticache" {
+  source = "git::https://github.com/Srikaanth62/tf-module-elasticache.git"
+  for_each = var.elasticache
+  subnets = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnets", null), each.value["subnet_name"], null), "subnet_ids", null)
+  tags = local.tags
+  env = var.env
+  vpc_id = local.vpc_id
+  allow_db_cidr = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnets", null), each.value["allow_db_cidr"], null), "subnet_cidrs", null)
+  engine_version = each.value["engine_version"]
+  num_node_groups = each.value["num_node_groups"]
+  replicas_per_node_group = each.value["replicas_per_node_group"]
+  node_type = each.value["node_type"]
+
+  kms_arn = var.kms_arn
+
+}
 
 
 

@@ -8,6 +8,28 @@ docdb = {
   }
 }
 
+rds = {
+  main ={
+    subnet_name    = "db"
+    allow_db_cidr  = "app"
+    engine_version = "5.7.mysql_aurora.2.11.2"
+    instance_count = 1
+    instance_class = "db.t3.small"
+  }
+}
+
+elasticache = {
+  main ={
+    subnet_name    = "db"
+    allow_db_cidr  = "app"
+    engine_version = "6.x"
+    num_node_groups = 1
+    replicas_per_node_group = 1
+    node_type = "cache.t3.micro"
+  }
+}
+
+
 env = "dev"
 bastion_cidr = ["172.31.13.238/32"]
 default_vpc_id = "vpc-0f945a96f067e3942"

@@ -7,6 +7,8 @@ variable "default_vpc_id" {}
 variable "default_vpc_rtid" {}
 variable "docdb" {}
 variable "kms_arn" {}
+variable "rds" {}
+variable "elasticache" {}
 
 
 
