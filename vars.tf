@@ -9,6 +9,9 @@ variable "docdb" {}
 variable "kms_arn" {}
 variable "rds" {}
 variable "elasticache" {}
+variable "rabbitmq" {}
+variable "domain_id" {}
+variable "alb" {}
 
 
 

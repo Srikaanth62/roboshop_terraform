@@ -29,6 +29,29 @@ elasticache = {
   }
 }
 
+rabbitmq = {
+  main = {
+    subnet_name   = "db"
+    allow_db_cidr = "app"
+    instance_type = "t3.small"
+  }
+}
+
+alb = {
+  public = {
+    name           = "public"
+    subnet_name    = "public"
+    allow_alb_cidr = null
+    internal       = false
+  }
+  private = {
+    name           = "private"
+    subnet_name    = "app"
+    allow_alb_cidr = "web"
+    internal       = true
+  }
+}
+
 
 env = "dev"
 bastion_cidr = ["172.31.13.238/32"]
