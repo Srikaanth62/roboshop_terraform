@@ -100,6 +100,10 @@ app ={
     max_size           = 10
     min_size           = 1
     app_port = 80
+    listener_priority = 1
+    dns_name          = "dev"
+    parameters        = []
+    lb_type           = "public"
   }
   catalogue = {
     name = "catalogue"
@@ -110,6 +114,9 @@ app ={
     max_size           = 10
     min_size           = 1
     app_port = 8080
+    listener_priority = 1
+    parameters        = ["docdb"]
+    lb_type           = "private"
   }
 
 
