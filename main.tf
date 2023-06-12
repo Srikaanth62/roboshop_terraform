@@ -10,7 +10,7 @@ module "vpc" {
   default_vpc_rtid = var.default_vpc_rtid
 }
 
-module "app" {
+/*module "app" {
   source = "git::https://github.com/Srikaanth62/tf-module-app.git"
   for_each = var.app
   instance_type = each.value["instance_type"]
@@ -25,7 +25,7 @@ module "app" {
   vpc_id = local.vpc_id
   allow_app_cidr = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnets", null), each.value["allow_app_cidr"], null), "subnet_cidrs", null)
 
-}
+}*/
 
 module "docdb" {
   source = "git::https://github.com/Srikaanth62/tf-module-docdb.git"
