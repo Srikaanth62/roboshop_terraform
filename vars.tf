@@ -12,6 +12,8 @@ variable "elasticache" {}
 variable "rabbitmq" {}
 variable "domain_id" {}
 variable "alb" {}
+variable "domain_name" {}
+variable "monitor_cidr" {}
 
 
 
