@@ -109,7 +109,7 @@ app ={
     name = "catalogue"
     instance_type = "t3.small"
     subnet_name = "app"
-    allow_app_cidr = "web"
+    allow_app_cidr = "app"
     desired_capacity   = 1
     max_size           = 10
     min_size           = 1
@@ -119,28 +119,56 @@ app ={
     lb_type           = "private"
   }
 
-
-
-
-
-#  cart = {
-#    name = "cart"
-#    instance_type = "t3.small"
-#    subnet_name = "app"
-#  }
-#  user = {
-#    name = "user"
-#    instance_type = "t3.small"
-#    subnet_name = "app"
-#  }
-#  shipping = {
-#    name = "shipping"
-#    instance_type = "t3.small"
-#    subnet_name = "app"
-#  }
-#  payment = {
-#    name = "payment"
-#    instance_type = "t3.small"
-#    subnet_name = "app"
-#  }
+  cart = {
+    name = "cart"
+    instance_type = "t3.small"
+    subnet_name = "app"
+    allow_app_cidr = "app"
+    desired_capacity   = 1
+    max_size           = 10
+    min_size           = 1
+    app_port = 8080
+    listener_priority = 1
+    parameters        = []
+    lb_type           = "private"
+  }
+  user = {
+    name = "user"
+    instance_type = "t3.small"
+    subnet_name = "app"
+    allow_app_cidr = "app"
+    desired_capacity   = 1
+    max_size           = 10
+    min_size           = 1
+    app_port = 8080
+    listener_priority = 1
+    parameters        = ["docdb"]
+    lb_type           = "private"
+  }
+  shipping = {
+    name = "shipping"
+    instance_type = "t3.small"
+    subnet_name = "app"
+    allow_app_cidr = "app"
+    desired_capacity   = 1
+    max_size           = 10
+    min_size           = 1
+    app_port = 8080
+    listener_priority = 1
+    parameters        = ["rds"]
+    lb_type           = "private"
+  }
+  payment = {
+    name = "payment"
+    instance_type = "t3.small"
+    subnet_name = "app"
+    allow_app_cidr = "app"
+    desired_capacity   = 1
+    max_size           = 10
+    min_size           = 1
+    app_port = 8080
+    listener_priority = 1
+    parameters        = []
+    lb_type           = "private"
+  }
 }
